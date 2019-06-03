@@ -1,7 +1,9 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from 'react'
+import { Provider } from 'react-redux'
+import createStore from './src/createStore'
+import prebuilddata from './prebuilddata.json'
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => {
+  const store = createStore(prebuilddata)
+  return <Provider store={store}>{element}</Provider>
+}
